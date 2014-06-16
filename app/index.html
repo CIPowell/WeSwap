@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" ng-app>
+	<head>
+		<meta charset="utf8">
+		<link rel="stylesheet" href="/css/main.css" />
+	</head>
+	<body>
+
+		<form ng-controller="CurrencyControl">
+			<h1>Compare our rates</h1>
+			<div class="half-width">
+				<label for="currency_from">From</label>
+					<select name="currency_from"
+						id="currency_from"
+						ng-model="currency_from"
+						ng-options="currency.name for currency in supported_currencies"
+						ng-change="change_currencies()">
+					</select>
+			</div>
+			<div class="half-width">
+				<label for="currency_to">To</label>
+						<select name="currency_to"
+							id="currency_to"
+							ng-model="currency_to"
+							ng-options="currency.name for currency in supported_currencies"
+							ng-change="change_currencies()">
+						</select>
+			</div>
+
+			<input class="amount" ng-model="amount" value="1" />
+
+			<p>WeSwap Gives you</p>
+
+			<p class="total">{{currency_to.symbol}}{{weswap_total()}}</p>
+			<p>You would only get...</p>
+
+			<p>{{currency_to.symbol}}{{airport_total()}} at the airport</p>
+			<p>{{currency_to.symbol}}{{highstreet_total()}} on the highstreer</p>
+		</form>
+
+		<script src="/bower_components/angular/angular.js"></script>
+		<script src="/js/converter.js"> </script>
+	</body>
+</html>
